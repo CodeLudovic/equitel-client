@@ -5,7 +5,8 @@ import Styles from "./Informes.module.css";
 import { Loader } from "../Loader/Loader";
 import { motion } from "framer-motion";
 import Swal from "sweetalert2";
-import { saveAs } from "file-saver";
+import { jsPDF } from "jspdf";
+import "jspdf-autotable";
 
 const Informes = ({ updateContextUser, informe }) => {
 	const [dataSales, setDataSales] = useState();
@@ -62,6 +63,19 @@ const Informes = ({ updateContextUser, informe }) => {
 		}
 		return totalUserSales;
 	};
+	const buildTable = () => {
+		const data = dataSales?.map((item) => {
+			return [
+				`${item.id}`,
+				`${item.producto}`,
+				`${item.cantidad}`,
+				`$ ${item.precio_unidad}`,
+				`$ ${item.cantidad * item.precio_unidad}`,
+			];
+		});
+		data.push([`Total Ventas`, ``, ``, ``, `$ ${handlerCalcSalesGlobal()}`]);
+		return data;
+	};
 
 	useEffect(() => {
 		setLoading(true);
@@ -101,25 +115,36 @@ const Informes = ({ updateContextUser, informe }) => {
 			.then(() => {})
 			.finally(() => {});
 	};
-
+	/* prettier-ignore */
 	const generarPdf = () => {
-		setLoading(true);
-		const totalSales = handlerCalcSalesGlobal();
-		axios
-			.post("/crear-pdf", { dataSales, totalSales })
-			.then(() => axios.get("/fetch-pdf", { responseType: "blob" }))
-			.then((res) => {
-				const pdfBlob = new Blob([res.data], {
-					type: "application/pdf",
-				});
-				saveAs(pdfBlob, "InformeDiario.pdf");
-			})
-			.catch((error) => {
-				console.log(error);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
+		const doc = new jsPDF();
+		const columns = [`ID`, `Producto`, `Cantidad`, `Precio Unitario`, `Valor Monto`];
+		const data = buildTable();
+		const titulo = "Reporte de Ventas Diarias";
+		const fontSize = 13 ;
+		const pageWidth = doc.internal.pageSize.getWidth();
+		const textWidth = doc.getStringUnitWidth(titulo) * fontSize / doc.internal.scaleFactor;
+		const x = (pageWidth - textWidth) / 2;
+		const y = 10;
+	
+		doc.setFontSize(fontSize);
+		doc.text(titulo, x, y);
+		doc.autoTable({
+			theme: "grid",
+			startY: 30,
+			head: [columns],
+            body: data,
+			styles: {
+				fontSize: 9,
+				headStyles: {
+					fillColor: [100, 100, 255] 
+				}
+			}
+		})
+
+		doc.save("informe-ventas.pdf");
+		
+	
 	};
 
 	return (

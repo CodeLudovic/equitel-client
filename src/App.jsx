@@ -18,9 +18,7 @@ import { InformeDiario } from "./views/InformeDiario/InformeDiario.jsx";
 export const userContext = React.createContext();
 function App() {
 	const location = useLocation();
-	const [data, setData] = useState([]);
 	const [logged, setLogged] = useState(null);
-	const [registering, setRegistering] = useState(false);
 	const shouldShowFooter = () => {
 		return ![
 			"/users/create",
@@ -37,23 +35,12 @@ function App() {
 		setUser(newUser);
 	};
 
-	const fetchData = async () => {
-		try {
-			const response = await axios.get(`/sales/informe-ventas`);
-			setData(response.data.ventas);
-		} catch (error) {
-			console.error("Error fetching data:", error);
-		}
-	};
-
 	const session = JSON.parse(localStorage.getItem("userOnSession"));
 
 	useEffect(() => {
 		if (session) {
 			setLogged(!logged);
 		}
-		fetchData();
-		setRegistering(false);
 	}, []);
 	const authenticatedAdminRoutes = (
 		<>
@@ -75,41 +62,15 @@ function App() {
 			/>
 			<Route
 				path="/sales/create"
-				element={
-					<CreateVenta
-						updateContextUser={updateContextUser}
-						setLogged={setLogged}
-						registering={registering}
-						setRegistering={setRegistering}
-						logged={logged}
-					/>
-				}
+				element={<CreateVenta updateContextUser={updateContextUser} />}
 			/>
 			<Route
 				path="/sales/report"
-				element={
-					<Informe
-						updateContextUser={updateContextUser}
-						setLogged={setLogged}
-						registering={registering}
-						setRegistering={setRegistering}
-						logged={logged}
-						data={data}
-					/>
-				}
+				element={<Informe updateContextUser={updateContextUser} />}
 			/>
 			<Route
 				path="/sales/dialyreport"
-				element={
-					<InformeDiario
-						updateContextUser={updateContextUser}
-						setLogged={setLogged}
-						registering={registering}
-						setRegistering={setRegistering}
-						logged={logged}
-						data={data}
-					/>
-				}
+				element={<InformeDiario updateContextUser={updateContextUser} />}
 			/>
 		</>
 	);
@@ -118,28 +79,11 @@ function App() {
 		<>
 			<Route
 				path="/sales/create"
-				element={
-					<CreateVenta
-						updateContextUser={updateContextUser}
-						setLogged={setLogged}
-						registering={registering}
-						setRegistering={setRegistering}
-						logged={logged}
-					/>
-				}
+				element={<CreateVenta updateContextUser={updateContextUser} />}
 			/>
 			<Route
 				path="/sales/report"
-				element={
-					<Informe
-						updateContextUser={updateContextUser}
-						setLogged={setLogged}
-						registering={registering}
-						setRegistering={setRegistering}
-						logged={logged}
-						data={data}
-					/>
-				}
+				element={<Informe updateContextUser={updateContextUser} />}
 			/>
 		</>
 	);
@@ -157,23 +101,12 @@ function App() {
 					{location.pathname === "/login" ? (
 						""
 					) : (
-						<NavBar
-							registering={registering}
-							setRegistering={setRegistering}
-							updateContextUser={updateContextUser}
-						/>
+						<NavBar updateContextUser={updateContextUser} />
 					)}
 					<Routes>
 						<Route
 							path="/"
-							element={
-								<Layout
-									updateContextUser={updateContextUser}
-									registering={registering}
-									setRegistering={setRegistering}
-									logged={logged}
-								/>
-							}
+							element={<Layout updateContextUser={updateContextUser} />}
 						/>
 						{logged && user.type === "admin"
 							? authenticatedAdminRoutes
@@ -186,8 +119,6 @@ function App() {
 								<Login
 									updateContextUser={updateContextUser}
 									setLogged={setLogged}
-									registering={registering}
-									setRegistering={setRegistering}
 									logged={logged}
 								/>
 							}
