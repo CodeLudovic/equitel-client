@@ -1,0 +1,31 @@
+/* backgroundColor: "rgba(255, 255, 255, 0.0)",
+							cursor: "pointer",
+							border: "none", */
+
+.button_action{
+    background-color: rgba(255, 255, 255, 0.0);
+    border: 0;
+    cursor: "pointer";
+    font-size: 16px;
+    transition:  background-color 0.3, font-size 0.3s;
+}
+
+.button_action:hover{
+    background-color: rgba(255, 255, 255, 0.3);
+
+    border: 1px solid rgba(255, 255, 255)
+}
+
+.input__field {
+    display: block;
+    margin-top: 0.5rem;
+    border: 1px solid var(--color-border-three);
+    border-radius: 0.25rem;
+    padding: 0.75rem 0.75rem;
+    transition: 0.15s ease;
+  }
+
+  .swal2-input {
+    margin: 0 !important;
+    width: 90% !important;
+  }

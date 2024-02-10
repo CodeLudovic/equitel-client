@@ -1,0 +1,31 @@
+.controlContainer{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    margin-top: 50px;
+}
+
+.contentTable{
+    margin-top: 40px;
+}
+
+.button_submit{
+    margin-top: 40px;
+    width: 200px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+    color: white;
+    font-weight: 700;
+    font-size: 0.875rem;
+    border: none;
+    cursor: pointer;
+    transition: 0.15s ease;
+  
+  }
+  .button_submit:hover {
+    background-color: var(--color-hover);
+    transform: scale(1.10);
+    color: white;
+  }
