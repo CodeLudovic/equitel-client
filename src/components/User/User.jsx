@@ -9,7 +9,7 @@ import { encrypt } from "../../utils/encode";
 
 export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 	const userData = useContext(userContext);
-	const deleteTask = async (id) => {
+	const deleteUser = async (id) => {
 		try {
 			setLoading(true);
 			Swal.fire({
@@ -57,11 +57,12 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 			console.log(error);
 		}
 	};
-	const editTask = async (id) => {
+	const editUser = async (id) => {
 		try {
 			let { value: formValues } = await Swal.fire({
 				title: "Modificar Usuario",
 				html: `
+					<form style="display: flex; flex-direction: column; align-items: center; font-family: 'Roboto', sans-serif; height: 756px;">
 					<label for="swal-input1" class="swal2-input">Nombre:</label>
 					<input id="swal-input1" class="swal2-input" value='${user.nombre}'>
 
@@ -87,6 +88,7 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 							)
 							.join("")}
 					</select>
+					</form>
 				`,
 				focusConfirm: false,
 				preConfirm: () => {
@@ -168,7 +170,7 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 				{userData?.type === "admin" ? (
 					<button
 						className={styles.button_action}
-						onClick={() => deleteTask(user.id)}>
+						onClick={() => deleteUser(user.id)}>
 						❌
 					</button>
 				) : (
@@ -177,7 +179,7 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 				{userData?.type === "admin" ? (
 					<button
 						className={styles.button_action}
-						onClick={() => editTask(user.id)}>
+						onClick={() => editUser(user.id)}>
 						✏️
 					</button>
 				) : (
