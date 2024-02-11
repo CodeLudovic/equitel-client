@@ -62,19 +62,19 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 			let { value: formValues } = await Swal.fire({
 				title: "Modificar Usuario",
 				html: `
-					<form style="display: flex; flex-direction: column; align-items: center; font-family: 'Roboto', sans-serif; height: 756px;">
-					<label for="swal-input1" class="swal2-input">Nombre:</label>
+					<form style="display: flex; flex-direction: column; align-items: center; font-family: 'Roboto', sans-serif; height: 525px;">
+					<label for="swal-input1" class="swal2-label">Nombre:</label>
 					<input id="swal-input1" class="swal2-input" value='${user.nombre}'>
 
-					<label for="swal-input2" class="swal2-input">Email:</label>
+					<label for="swal-input2" class="swal2-label">Email:</label>
 					<input id="swal-input2" class="swal2-input" value='${user.email}'>
 
-					<label for="swal-input3" class="swal2-input">Password:</label>
+					<label for="swal-input3" class="swal2-label">Password:</label>
 					<input id="swal-input3" class="swal2-input" type="password" value='${
 						user.password
 					}'>
 
-					<label for="swal-input4" class="swal2-input">Rol de Usuario:</label>
+					<label for="swal-input4" class="swal2-label">Rol de Usuario:</label>
 					<select id="swal-input4" class="swal2-select swal2-input">
 						<option value="Tipo de usuario">Seleccione un usuario</option>
 						${rolDataSelector
