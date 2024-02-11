@@ -1,8 +1,3 @@
-# React + Vite
+# Equitel Prueba Tecnica - Client
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Documentacion: [https://docs.google.com/document/d/1Tva-AforE8oUNkazOCzwVlXtyBQbsSTy8ixcL9SX9VU/edit?usp=sharing](https://docs.google.com/document/d/1Tva-AforE8oUNkazOCzwVlXtyBQbsSTy8ixcL9SX9VU/edit?usp=sharing)
