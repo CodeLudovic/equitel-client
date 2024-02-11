@@ -14,6 +14,7 @@ import { CreateVenta } from "./views/Venta/CreateVenta.jsx";
 import { Informe } from "./views/Informe/Informe.jsx";
 import axios from "axios";
 import { InformeDiario } from "./views/InformeDiario/InformeDiario.jsx";
+import AuditLog from "./views/AuditLog/AuditLog.jsx";
 
 export const userContext = React.createContext();
 function App() {
@@ -26,6 +27,8 @@ function App() {
 			"/products/create",
 			"/providers/create",
 			"/sales/create",
+			"/auditlogs/logs",
+			"/sales/report",
 		].includes(location.pathname);
 	};
 
@@ -71,6 +74,10 @@ function App() {
 			<Route
 				path="/sales/dialyreport"
 				element={<InformeDiario updateContextUser={updateContextUser} />}
+			/>
+			<Route
+				path="/auditlogs/logs"
+				element={<AuditLog updateContextUser={updateContextUser} />}
 			/>
 		</>
 	);

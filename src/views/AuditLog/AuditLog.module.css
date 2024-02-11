@@ -1,0 +1,57 @@
+.auditlogsContainer {
+  width: 90%;
+  min-height: 100%;
+  margin: auto;
+  padding: var(--pd-section);
+}
+
+  /* Estilo básico de la paginación */
+  .paginationContainer {
+    margin: 30px 0;
+    text-align: center;
+  }
+  
+  .paginationBotton {
+    background-color: var(--color-primary);
+    color: var(--color-text-secondary);
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 3px;
+  }
+
+  .pagePaginationBotton {
+    background-color: var(--color-primary);
+    color: var(--color-text-secondary);
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 3px;
+  }
+
+  .paginationBotton:disabled {
+    opacity: 0.5; 
+    cursor: not-allowed;
+}
+  
+  .currentPage {
+    background-color: var(--color-background-off-two);
+    color: var(--color-text-secondary);
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    width: 25px;
+    margin-left: 3px;
+  }
+  
+  .buttonPage {
+    width: 25px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin: 0 4px;
+  }

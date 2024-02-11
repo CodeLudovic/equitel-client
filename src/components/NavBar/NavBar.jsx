@@ -51,6 +51,10 @@ const Navbar = ({ updateContextUser }) => {
 		navigate(`/sales/report`);
 	};
 
+	const handleNavigateToLogsAudit = () => {
+		navigate(`/auditlogs/logs`);
+	};
+
 	const signOutFn = () => {
 		if (userData) {
 			clear();
@@ -146,6 +150,11 @@ const Navbar = ({ updateContextUser }) => {
 															<button
 																onClick={() => handleNavigateToInformDialy()}>
 																Informe Diario de Ventas
+															</button>
+															<hr />
+															<button
+																onClick={() => handleNavigateToLogsAudit()}>
+																Logs de Auditoria
 															</button>
 														</>
 													)}
