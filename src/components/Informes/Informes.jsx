@@ -130,7 +130,7 @@ const Informes = ({ updateContextUser, informe }) => {
 		doc.setFontSize(fontSize);
 		doc.text(titulo, x, y);
 		doc.autoTable({
-			theme: "grid",
+			theme: "striped",
 			startY: 30,
 			head: [columns],
             body: data,
