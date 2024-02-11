@@ -266,7 +266,7 @@ const Informes = ({ updateContextUser, informe }) => {
 											</tbody>
 										</motion.table>
 									) : (
-										<div>No hay ventas disponibles para este usuario.</div>
+										<div>No hay ventas disponibles en esta fecha.</div>
 									))}
 								{!search && (
 									<button
