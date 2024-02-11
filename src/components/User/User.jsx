@@ -116,7 +116,10 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 							.put("/users/user/edit", {
 								nombre: formValues[0],
 								email: formValues[1],
-								password: encrypt(formValues[2]) || user.password,
+								password:
+									user.password === encrypt(formValues[2])
+										? user.password
+										: encrypt(formValues[2]),
 								type: formValues[3],
 								id: id,
 								id_admin: userData.id,
