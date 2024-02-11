@@ -211,7 +211,7 @@ export const Producto = ({
 			}).then((result) => {
 				setLoading(true);
 				if (result.isConfirmed) {
-					if (stocker <= 0) {
+					if (stocker < 0) {
 						setLoading(false);
 						return Swal.fire({
 							icon: "error",
