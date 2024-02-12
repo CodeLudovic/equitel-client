@@ -102,7 +102,7 @@ export const Proveedor = ({ provider, updateDataAfterChanges, setLoading }) => {
 								nombre: formValues[0] || provider.nombre,
 								direccion: formValues[1] || provider.direccion,
 								telefono: formValues[2] || provider.telefono,
-								RUT: formValues[3] || provider.rut,
+								rut: formValues[3] || provider.rut,
 								id: id,
 								id_admin: userData.id,
 							})

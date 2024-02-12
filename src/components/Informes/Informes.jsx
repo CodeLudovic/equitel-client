@@ -162,7 +162,10 @@ const Informes = ({ updateContextUser, informe }) => {
 						</div>
 						<section>
 							<div>
-								{dataSales?.length !== 0 ? (
+								{dataSales?.length !== 0 &&
+								dataSales?.filter(
+									(element) => element.id_usuario === session.id
+								).length > 0 ? (
 									<table>
 										<tbody>
 											<tr>
@@ -283,11 +286,13 @@ const Informes = ({ updateContextUser, informe }) => {
 											flexDirection: "row",
 											gap: "20px",
 										}}>
-										<button
-											className={Styles.button_submit}
-											onClick={() => generarPdf()}>
-											Descargar Informe
-										</button>
+										{dataSales?.length > 0 && (
+											<button
+												className={Styles.button_submit}
+												onClick={() => generarPdf()}>
+												Descargar Informe
+											</button>
+										)}
 										<button
 											className={Styles.button_submit}
 											onClick={() => setSearch(!search)}>

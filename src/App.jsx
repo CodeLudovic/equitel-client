@@ -29,6 +29,7 @@ function App() {
 			"/sales/create",
 			"/auditlogs/logs",
 			"/sales/report",
+			"/sales/dialyreport",
 		].includes(location.pathname);
 	};
 

@@ -9,6 +9,7 @@ import { encrypt } from "../../utils/encode";
 
 export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 	const userData = useContext(userContext);
+
 	const deleteUser = async (id) => {
 		try {
 			setLoading(true);
@@ -58,6 +59,7 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 		}
 	};
 	const editUser = async (id) => {
+		const passwordOriginal = user?.password;
 		try {
 			let { value: formValues } = await Swal.fire({
 				title: "Modificar Usuario",
@@ -102,6 +104,20 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 					return null;
 				},
 			});
+			if (
+				formValues[0] === user.nombre &&
+				formValues[1] === user.email &&
+				formValues[2] === user.password &&
+				formValues[3] === user.type
+			) {
+				return Swal.fire({
+					icon: "info",
+					title: "No se modifico ningun campo",
+					customClass: {
+						popup: "mySwal",
+					},
+				});
+			}
 			if (formValues) {
 				Swal.fire({
 					title: "Desea guardar los cambios?",
@@ -111,14 +127,19 @@ export const User = ({ user, updateDataAfterChanges, setLoading }) => {
 					denyButtonText: `Cancelar`,
 				}).then((result) => {
 					setLoading(true);
+					console.log(
+						passwordOriginal === formValues[2]
+							? user.password
+							: encrypt(formValues[2])
+					);
 					if (result.isConfirmed) {
 						axios
 							.put("/users/user/edit", {
 								nombre: formValues[0],
 								email: formValues[1],
 								password:
-									user.password === encrypt(formValues[2])
-										? user.password
+									passwordOriginal === formValues[2]
+										? passwordOriginal
 										: encrypt(formValues[2]),
 								type: formValues[3],
 								id: id,
